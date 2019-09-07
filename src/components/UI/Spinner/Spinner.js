@@ -3,7 +3,7 @@ import React from 'react';
 import './Spinner.css'
 
 const spinner = (props) => (
-  <div className="Loader">Loader...</div>
+  <div className="Loader"></div>
 );
 
 export default spinner;

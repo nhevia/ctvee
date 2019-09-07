@@ -1,20 +1,21 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+// import {Route, Switch} from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import Home from './containers/Home/Home';
-import About from './components/About/About';
-import Shows from './containers/Shows/Shows'
+// import About from './components/About/About';
+// import Shows from './containers/Shows/Shows'
 
 function App() {
   return (
     <React.Fragment>
       <Layout>
-        <Switch>
+        {/* <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/shows/:id" component={Shows} />
           <Route path="/about" component={About} />
-        </Switch>
+        </Switch> */}
+        <Home />
       </Layout>
     </React.Fragment>
   );

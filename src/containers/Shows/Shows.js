@@ -8,7 +8,8 @@ const Shows = (props) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const id = props.match.params.id;
+    //const id = props.match.params.id;
+    const id = props.id
     axios.get(`https://api.tvmaze.com/shows/${id}`)
       .then(res => {
         const show = res.data
@@ -18,7 +19,6 @@ const Shows = (props) => {
           summary: show.summary,
           image: show.image.medium
         })
-        console.log('asdasdasidaisjda')
 
         setLoading(false)
       })
@@ -31,7 +31,6 @@ const Shows = (props) => {
 
     content = (
       <React.Fragment>
-      {console.log('asdasda')}
         <p>{show.name}</p>
         <p>{summary}</p>
         <img src={image} alt=""/>
