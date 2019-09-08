@@ -21,7 +21,7 @@ const Home = (props) => {
 
   // load page 1 show list from API, move elsewhere and only call once
   useEffect(() => {
-    axios.get(`http://api.tvmaze.com/shows?page=0`)
+    axios.get(`https://api.tvmaze.com/shows?page=0`)
       .then(res => {
         let shows = []
         res.data.forEach(entry => {
