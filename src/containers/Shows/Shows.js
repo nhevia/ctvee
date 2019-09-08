@@ -8,7 +8,7 @@ const Shows = (props) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    //const id = props.match.params.id;
+    setLoading(true) // when showing a show from another one, we want to reset loading
     const id = props.id
     axios.get(`https://api.tvmaze.com/shows/${id}`)
       .then(res => {
@@ -26,20 +26,21 @@ const Shows = (props) => {
 
   let content = <Spinner />
   if (!loading) {
-    const summary = show.summary.replace(/<[/]?(p|b)>/g, '')
+    const summary = show.summary.replace(/<[/]?(p|b|i)>/g, '')
     const image = show.image;
 
     content = (
       <React.Fragment>
-        <p>{show.name}</p>
-        <p>{summary}</p>
-        <img src={image} alt=""/>
+        <p style={{textAlign: 'center', padding: '20px', fontWeight: 'bold'}}>{show.name}</p>
+        <hr />
+        <p style={{padding: '50px'}}>{summary}</p>
+        <img style={{marginLeft: 'auto', marginRight: 'auto', display: 'block'}} src={image} alt=""/>
       </React.Fragment>
     );
   }
 
   return (
-    <div>
+    <div style={{marginTop: '-150px'}}>
       {content}
     </div>
   );
