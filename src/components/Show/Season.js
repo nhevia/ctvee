@@ -9,10 +9,12 @@ const Season = (props) => {
   useEffect(() => {
     if (props.seasonData.image) {
       setIsLoading(true)
-      fetch(props.seasonData.image.medium)
+      const httpsURL = props.seasonData.image.medium.replace('http', 'https')
+      fetch(httpsURL)
         .then(response => response.blob())
         .then(images => {
           let outside = URL.createObjectURL(images)
+          console.log(outside)
           setImage(
             <React.Fragment>
               <img src={outside} alt=""/>
