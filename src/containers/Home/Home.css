@@ -5,8 +5,6 @@
 }
 
 .SelectedWithOption {
-    max-height: 0px;
     transform: translateY(-250px);
     transition: all 0.3s ease-out;
-    
 }

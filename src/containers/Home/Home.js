@@ -9,15 +9,7 @@ import Logo from '../../components/Layout/Logo/Logo'
 const Home = (props) => {
   const [selectedOption, setSelectedOption] = useState(null)
   const [options, setOptions] = useState([]) // too much?
-  // const [logo, setLogo] = useState(Logo)
-
-  // useEffect(() => {
-  //   if (selectedOption) {
-  //     setTimeout(() => {
-  //       setLogo(null)
-  //     }, 300)
-  //   }
-  // }, [selectedOption])
+  const [openMenu, setOpenMenu] = useState(false)
 
   // load page 1 show list from API, move elsewhere and only call once
   useEffect(() => {
@@ -28,7 +20,7 @@ const Home = (props) => {
           shows.push({
             id: entry.id,
             label: entry.name,
-            value: entry.name
+            value: entry.name.toLowerCase()
           })
           setOptions(shows)
         })
@@ -40,10 +32,12 @@ const Home = (props) => {
 
   // handle selector event
   const handleChange = selectedOption => {
+    hideMenu()
     setSelectedOption(selectedOption);
     console.log(`Option selected:`, selectedOption);
   };
 
+  // custom styles for react-select components
   const customStyles = {
     container: (base) => ({
       ...base,
@@ -55,10 +49,27 @@ const Home = (props) => {
       ...base,
       borderBottom: '1px dotted pink',
       color: state.isSelected ? 'white' : 'black',
-      padding: 20,
     }),
-    
+    dropdownIndicator: () => ({
+      visibility: 'hidden'
+    }),
   };
+
+  // override default behaviour to not show react-select menu when selected
+  const handleInputChange = (query, { action }) => {
+    i = 0 
+    if (action === "input-change") {
+      setOpenMenu(true)
+    }
+    //return query.toLowerCase()
+  };
+
+  const hideMenu = () => {
+    setOpenMenu(false)
+  };
+
+  const resultLimit = 6
+  let i = 0
 
   return(
     <div style={{padding: '100px'}}>
@@ -68,10 +79,17 @@ const Home = (props) => {
         styles={customStyles}
         value={selectedOption}
         onChange={handleChange}
-        options={options}
-        label="Single Select"
+        options={options}      
+        placeholder={"Search your favourite series"}
+        // override default behaviours for hiding options  
+        onBlur={hideMenu}
+        menuIsOpen={openMenu}
+        onInputChange={handleInputChange}
+
+        filterOption={({value}, query) => value.indexOf(query.toLowerCase()) >= 0 && i++ < resultLimit}
+        //onInputChange={() => { i = 0 }}
       />
-      {selectedOption ? <Shows id={selectedOption.id}/> : null}
+      {selectedOption && <Shows id={selectedOption.id}/>}
     </div>
   )
 };

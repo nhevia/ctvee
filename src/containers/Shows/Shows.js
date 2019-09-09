@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
+import Meta from '../../components/Show/Meta';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 const Shows = (props) => {
@@ -15,33 +16,21 @@ const Shows = (props) => {
         const show = res.data
         
         setShow({
+          id: show.id,
           name: show.name,
           summary: show.summary,
-          image: show.image.medium
+          image: show.image.medium,
+          rating: show.rating.average,
+          premiered: show.premiered
         })
 
         setLoading(false)
       })
   }, [props])
 
-  let content = <Spinner />
-  if (!loading) {
-    const summary = show.summary.replace(/<[/]?(p|b|i)>/g, '')
-    const image = show.image;
-
-    content = (
-      <React.Fragment>
-        <p style={{textAlign: 'center', padding: '20px', fontWeight: 'bold'}}>{show.name}</p>
-        <hr />
-        <p style={{padding: '50px'}}>{summary}</p>
-        <img style={{marginLeft: 'auto', marginRight: 'auto', display: 'block'}} src={image} alt=""/>
-      </React.Fragment>
-    );
-  }
-
   return (
-    <div style={{marginTop: '-150px'}}>
-      {content}
+    <div style={{marginTop: '-200px'}}>
+      {loading ? <Spinner /> : <Meta show={show} />}
     </div>
   );
 }

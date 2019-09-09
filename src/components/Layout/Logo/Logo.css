@@ -7,6 +7,7 @@
 .LogoHide {
     margin-left: auto;
     margin-right: auto;
+    /* should use this but brokes depending on window display: flex; */
     transform: translateX(-50%) translateY(-55%) scale(0.45);
     transition: all 0.3s ease-out;
 }
