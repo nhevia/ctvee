@@ -72,7 +72,7 @@ const Home = (props) => {
   let i = 0
 
   return(
-    <div style={{padding: '100px'}}>
+    <div className="Home">
       {selectedOption ? <Logo show={false}/> : <Logo show={true}/>}
       <Select 
         className={selectedOption ? "SelectedWithOption" : "SelectedWithoutOption"}

@@ -49,25 +49,13 @@ const Seasons = (props) => {
   const handleSeasonSelect = (event) => {
     event.preventDefault()
     setSelectedSeason(event.target.selectedIndex)
-    //console.log(`Index: ${event.target.index}. SelectedIndex: ${event.target.selectedIndex}`)
-    // if (event.target.index !== null) {
-    //   console.log('Firefox')
-    //   console.log(event.target.index)
-    //   setSelectedSeason(event.target.index)
-    // }
-
-    // if (event.target.selectedIndex !== null) {
-    //   console.log('Chrome')
-    //   console.log(event.target.selectedIndex)
-    //   setSelectedSeason(event.target.selectedIndex)
-    // } 
   }
 
   return (
     <div style={{padding: '20px'}}  >
       <section >
         <div className="select">
-          <select onChange={handleSeasonSelect} style={{marginLeft: '50%'}} >
+          <select onChange={handleSeasonSelect}>
             {seasonsEl}
           </select>
         </div>

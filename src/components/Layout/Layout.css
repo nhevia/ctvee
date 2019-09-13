@@ -1,0 +1,8 @@
+.Layout {
+    margin:auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: 1px solid #DDD;
+    display: flex;
+    width: 90%;
+}
