@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../Layout/Header/Header';
+//import Header from '../Layout/Header/Header';
 
 const layoutStyle = {
   margin: 20,
@@ -9,7 +9,6 @@ const layoutStyle = {
 
 const layout = (props) => (
   <div style={layoutStyle}>
-    <Header />
     {props.children}
   </div>
 );

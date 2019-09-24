@@ -2,7 +2,7 @@
     padding: 100px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+
 }
 
 .SelectedWithoutOption {
@@ -10,6 +10,6 @@
 }
 
 .SelectedWithOption {
-    transform: translateY(-250px);
+    transform: translateY(-220px);
     transition: all 0.3s ease-out;
 }

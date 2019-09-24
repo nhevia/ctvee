@@ -1,33 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
-import Spinner from '../UI/Spinner/Spinner'
+//import Spinner from '../UI/Loaders/Spinner/Spinner'
+import Dots from '../../components/UI/Loaders/Dots/LoaderDots';
+import useImage from '../../hooks/useImage';
 
 const Season = (props) => {
-  const [isLoading, setIsLoading] = useState(true)
-  const [image, setImage] = useState(null)
-
-  useEffect(() => {
-    if (props.seasonData.image) {
-      setIsLoading(true)
-      const httpsURL = props.seasonData.image.medium.replace('http', 'https')
-      fetch(httpsURL)
-        .then(response => response.blob())
-        .then(images => {
-          let outside = URL.createObjectURL(images)
-          console.log(outside)
-          setImage(
-            <React.Fragment>
-              <img src={outside} alt=""/>
-            </React.Fragment>
-          )
-          setIsLoading(false)
-        })
-    } else {
-      setImage('<No pic available>')
-      setIsLoading(false)
-    }
-  }, [props.seasonData.image])
-
+  const [image, isLoading] = useImage(props.seasonData.image)
 
   let content = null
   if (props.seasonData) {
@@ -39,7 +17,7 @@ const Season = (props) => {
           <p><b>Episodes</b>: {props.seasonData.episodeOrder}</p>
         </section>
         <section style={{float: 'right'}}>
-          {isLoading ? <Spinner /> : image}
+          {isLoading ? <Dots /> : image}
         </section>
       </React.Fragment>
     )

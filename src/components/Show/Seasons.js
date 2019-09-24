@@ -27,11 +27,10 @@ const Seasons = (props) => {
             episodeOrder: season.episodeOrder
           })
         });
-
         setSeasons(seasons)
         setIsMounted(true) // now render Season
       })
-  }, [id])
+  }, [])
 
   useEffect(() => {
     let seasonsArr = []
@@ -43,8 +42,8 @@ const Seasons = (props) => {
     })
     
     setSeasonsEl(seasonsArr)
-    //TODO: why does it change twice? .... console.log('sewasons changed')
-  }, [seasons]) // isMounted and seasons both change twice...
+    // TODO: changes twice, fix
+  }, [seasons])
 
   const handleSeasonSelect = (event) => {
     event.preventDefault()

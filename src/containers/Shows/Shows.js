@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 import Meta from '../../components/Show/Meta';
-import Spinner from '../../components/UI/Spinner/Spinner';
+//import Spinner from '../../components/UI/Loaders/Spinner/Spinner';
+import Dots from '../../components/UI/Loaders/Dots/LoaderDots';
+import imagePlaceholder from '../../images/no_image.png'
 
 const Shows = (props) => {
   const [show, setShow] = useState({})
@@ -15,6 +17,14 @@ const Shows = (props) => {
       .then(res => {
         const show = res.data
         
+        if (!show.summary) {
+          show.summary = "No summary found"
+        }
+        if (!show.image) {
+          show.image = {}
+          show.image.medium = imagePlaceholder
+        }
+
         setShow({
           id: show.id,
           name: show.name,
@@ -26,11 +36,11 @@ const Shows = (props) => {
 
         setLoading(false)
       })
-  }, [props])
+  }, [props.id]) // changed from props to id, somehow props is changing. TODO: FIX
 
   return (
     <div style={{marginTop: '-200px'}}>
-      {loading ? <Spinner /> : <Meta show={show} />}
+      {loading ? <Dots /> : <Meta show={show} />}
     </div>
   );
 }

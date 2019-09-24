@@ -3,27 +3,50 @@ import Select from 'react-select';
 import axios from 'axios';
 import Shows from '../Shows/Shows'
 
+import Spinner from '../../components/UI/Loaders/Spinner/Spinner'
+import Ellipsis from '../../components/UI/Loaders/Bars/LoaderBars'
+
 import './Home.css'
 import Logo from '../../components/Layout/Logo/Logo'
 
 const Home = (props) => {
-  const [selectedOption, setSelectedOption] = useState(null)
-  const [options, setOptions] = useState([]) // too much?
+  const [selectedOption, setSelectedOption] = useState(null)  
+  const [options, setOptions] = useState([])
   const [openMenu, setOpenMenu] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
-  // load page 1 show list from API, move elsewhere and only call once
   useEffect(() => {
-    axios.get(`https://api.tvmaze.com/shows?page=0`)
+    // Check if data is cached already in localStorage
+    const showsStored = JSON.parse(localStorage.getItem("shows"))
+    // shows will have AT LEAST 20k entries
+    if (showsStored && showsStored.length > 10000) {
+      let shows = []
+      showsStored.forEach(entry => {
+        shows.push({
+          id: entry.i,
+          label: entry.n,
+          value: entry.n.toLowerCase()
+        })
+        setOptions(shows)
+        setIsLoading(false)
+      })
+      return
+    }
+    
+    // If this is the first time visiting the site (or cache expired):
+    axios.get(`https://gbiq5irckk.execute-api.us-east-2.amazonaws.com/dev/getShowsName`)
       .then(res => {
         let shows = []
         res.data.forEach(entry => {
           shows.push({
-            id: entry.id,
-            label: entry.name,
-            value: entry.name.toLowerCase()
+            id: entry.i,
+            label: entry.n,
+            value: entry.n.toLowerCase()
           })
           setOptions(shows)
+          setIsLoading(false)
         })
+        localStorage.setItem("shows", JSON.stringify(res.data));
       })
       .catch(error => {
         console.log(error)
@@ -61,19 +84,20 @@ const Home = (props) => {
     if (action === "input-change") {
       setOpenMenu(true)
     }
-    //return query.toLowerCase()
   };
-
   const hideMenu = () => {
     setOpenMenu(false)
   };
 
+  // limit the items showings as options when searching
   const resultLimit = 6
   let i = 0
 
   return(
-    <div className="Home">
+    <div  className="Home">
+      
       {selectedOption ? <Logo show={false}/> : <Logo show={true}/>}
+      {isLoading ? <Ellipsis /> : 
       <Select 
         className={selectedOption ? "SelectedWithOption" : "SelectedWithoutOption"}
         styles={customStyles}
@@ -85,13 +109,16 @@ const Home = (props) => {
         onBlur={hideMenu}
         menuIsOpen={openMenu}
         onInputChange={handleInputChange}
-
+        // limit options showing
         filterOption={({value}, query) => value.indexOf(query.toLowerCase()) >= 0 && i++ < resultLimit}
-        //onInputChange={() => { i = 0 }}
       />
+      }
+     
       {selectedOption && <Shows id={selectedOption.id}/>}
+      
     </div>
   )
 };
 
 export default Home;
+
