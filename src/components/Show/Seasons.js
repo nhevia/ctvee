@@ -42,7 +42,7 @@ const Seasons = (props) => {
     })
     
     setSeasonsEl(seasonsArr)
-    // TODO: changes twice, fix
+    // FIXME: changes twice
   }, [seasons])
 
   const handleSeasonSelect = (event) => {
@@ -51,18 +51,18 @@ const Seasons = (props) => {
   }
 
   return (
-    <div style={{padding: '20px'}}  >
-      <section >
-        <div className="select">
-          <select onChange={handleSeasonSelect}>
-            {seasonsEl}
-          </select>
-        </div>
-          <div style={{padding: '50px'}}>
-            {seasons && isMounted ? <Season seasonData={seasons[selectedSeason]}/> : null}
-          </div>
-      </section>
-    </div>
+    <React.Fragment>
+      
+      <div className="select">
+        <select onChange={handleSeasonSelect}>
+          {seasonsEl}
+        </select>
+      </div>
+
+     
+        {seasons && isMounted ? <Season seasonData={seasons[selectedSeason]}/> : null}
+      
+      </React.Fragment>
   )
 }
 

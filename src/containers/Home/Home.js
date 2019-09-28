@@ -66,7 +66,7 @@ const Home = (props) => {
   const customStyles = {
     container: (base) => ({
       ...base,
-      width: '50%',
+      
       marginLeft: 'auto',
       marginRight: 'auto'
     }),

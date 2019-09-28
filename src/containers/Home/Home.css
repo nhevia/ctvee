@@ -6,14 +6,12 @@
 }
 
 .SelectedWithoutOption {
-   
+    width: 50%;
 }
 
 .SelectedWithOption {
     animation: moveSelector 300ms forwards;
-    /* margin-top: -150px;
-    transform: translateY(-220px);
-    transition: all 0.3s ease-out;  */
+    width: 50%;
 }
 
 @keyframes moveSelector{
@@ -23,5 +21,15 @@
 
     100% {
         margin-top: -400px;
+    }
+}
+
+@media (max-width: 500px) {
+    .SelectedWithoutOption{
+        width: 80%;
+    }
+
+    .SelectedWithOption{
+        width: 80%;
     }
 }

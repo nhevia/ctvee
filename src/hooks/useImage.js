@@ -8,6 +8,7 @@ const useImage = (propImage) => {
 
   useEffect(() => {
     if (propImage) {
+      console.log(propImage)
       setIsLoading(true)
       const httpsURL = propImage.medium.replace('http', 'https')
       fetch(httpsURL)
@@ -27,7 +28,6 @@ const useImage = (propImage) => {
           <img src={imagePlaceholder} alt=""/>
         </React.Fragment>
       )
-      //setImage(imagePlaceholder)
       setIsLoading(false)
     }
   }, [propImage])

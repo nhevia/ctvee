@@ -52,3 +52,9 @@
 .select select:disabled ~ .select_arrow {
     border-top-color: #cccccc;
 } */
+
+@media (max-width: 800px) {
+    .select {
+        width: 80%;
+    }
+}

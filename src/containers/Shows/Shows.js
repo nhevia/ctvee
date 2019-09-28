@@ -29,7 +29,7 @@ const Shows = (props) => {
           id: show.id,
           name: show.name,
           summary: show.summary,
-          image: show.image.medium,
+          image: show.image,
           rating: show.rating.average,
           premiered: show.premiered
         })

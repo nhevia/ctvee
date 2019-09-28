@@ -1,0 +1,22 @@
+.Show {
+    display: flex;
+    flex-direction: column;
+}
+
+.Meta {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: inherit;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    
+}
+
+.Seasons {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: inherit;
+    flex-direction: column;
+}
