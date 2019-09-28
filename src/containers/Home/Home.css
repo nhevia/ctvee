@@ -1,15 +1,27 @@
 .Home {
-    padding: 100px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
 
 }
 
 .SelectedWithoutOption {
-    margin-top: 100px;
+   
 }
 
 .SelectedWithOption {
+    animation: moveSelector 300ms forwards;
+    /* margin-top: -150px;
     transform: translateY(-220px);
-    transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;  */
+}
+
+@keyframes moveSelector{
+    0% {
+
+    }
+
+    100% {
+        margin-top: -400px;
+    }
 }

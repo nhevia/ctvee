@@ -3,7 +3,6 @@ import Select from 'react-select';
 import axios from 'axios';
 import Shows from '../Shows/Shows'
 
-import Spinner from '../../components/UI/Loaders/Spinner/Spinner'
 import Ellipsis from '../../components/UI/Loaders/Bars/LoaderBars'
 
 import './Home.css'
@@ -17,8 +16,10 @@ const Home = (props) => {
 
   useEffect(() => {
     // Check if data is cached already in localStorage
+    // TODO: implement time-based cache limit
     const showsStored = JSON.parse(localStorage.getItem("shows"))
-    // shows will have AT LEAST 20k entries
+    // shows will have AT LEAST 10k entries
+    // TODO: think of another way, not convinced about the 10k check
     if (showsStored && showsStored.length > 10000) {
       let shows = []
       showsStored.forEach(entry => {
@@ -33,7 +34,8 @@ const Home = (props) => {
       return
     }
     
-    // If this is the first time visiting the site (or cache expired):
+    // If this is the first time visiting the site    
+    // FIXME: fetches only 2287x items, out of 39k. Seems like a dynamo limitation
     axios.get(`https://gbiq5irckk.execute-api.us-east-2.amazonaws.com/dev/getShowsName`)
       .then(res => {
         let shows = []
@@ -94,9 +96,9 @@ const Home = (props) => {
   let i = 0
 
   return(
+    <React.Fragment>
     <div  className="Home">
-      
-      {selectedOption ? <Logo show={false}/> : <Logo show={true}/>}
+      {selectedOption ? <Logo isHome={false}/> : <Logo isHome/>}
       {isLoading ? <Ellipsis /> : 
       <Select 
         className={selectedOption ? "SelectedWithOption" : "SelectedWithoutOption"}
@@ -114,9 +116,13 @@ const Home = (props) => {
       />
       }
      
-      {selectedOption && <Shows id={selectedOption.id}/>}
+      
       
     </div>
+    <div>
+      {selectedOption && <Shows id={selectedOption.id}/>}
+    </div>
+    </React.Fragment>
   )
 };
 

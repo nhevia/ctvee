@@ -39,7 +39,7 @@ const Shows = (props) => {
   }, [props.id]) // changed from props to id, somehow props is changing. TODO: FIX
 
   return (
-    <div style={{marginTop: '-200px'}}>
+    <div id="shows">
       {loading ? <Dots /> : <Meta show={show} />}
     </div>
   );

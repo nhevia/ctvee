@@ -7,7 +7,7 @@ import LogoImage from '../../../images/logo.png'
 const logo = (props) => {
   return (
     <React.Fragment>
-      <img className={props.show ? "Logo" : "LogoHide"} src={LogoImage} alt=""/>
+      <img className={props.isHome ? "LogoHome" : "LogoSmall"} src={LogoImage} alt=""/>
     </React.Fragment>
   )
 };

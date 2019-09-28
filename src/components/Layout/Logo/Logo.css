@@ -1,20 +1,20 @@
-.Logo {
+.LogoHome {
     align-self: center;
-    max-width: 100%;
-    animation: animateLogo 450ms forwards;
+    animation: animateLogoHome 1500ms forwards;
 }
 
-.LogoHide {
+.LogoSmall {
     align-self: flex-start;
-    transform: translate(-50%, -50%) scale(0.5);
-    max-width: 100%;
-    
-    height:auto;
+    transform: translate(-50%, -50%) scale(0.33);
+    transform-origin: 80% 80%;
+
+
+    /* animation: animateLogoSmall 650ms forwards; */
     /* transform: translate(calc(-25vw - 15%), calc(-5vh - 40%)) scale(0.45); */
-    transition: all 0.3s ease-out;   
+    /* transition: transform 0.3s ease-out;    */
 }
 
-@keyframes animateLogo {
+@keyframes animateLogoHome {
     0% {
         opacity: 0;
         transform: scale(1.1)
@@ -25,3 +25,12 @@
         transform: scale(1.0)
     }
 }
+/* 
+@keyframes animateLogoSmall {
+    0% {
+       
+    }
+    100% {
+        transform:  scale(0.5);
+    }
+} */
