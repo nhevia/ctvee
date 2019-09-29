@@ -2,7 +2,13 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+}
 
+.HomeWithOption {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .SelectedWithoutOption {
@@ -11,7 +17,7 @@
 
 .SelectedWithOption {
     animation: moveSelector 300ms forwards;
-    width: 50%;
+    width: 80%;
 }
 
 @keyframes moveSelector{
@@ -20,7 +26,7 @@
     }
 
     100% {
-        margin-top: -400px;
+       
     }
 }
 
@@ -30,6 +36,6 @@
     }
 
     .SelectedWithOption{
-        width: 80%;
+        width: 100%;
     }
 }

@@ -8,7 +8,6 @@ const useImage = (propImage) => {
 
   useEffect(() => {
     if (propImage) {
-      console.log(propImage)
       setIsLoading(true)
       const httpsURL = propImage.medium.replace('http', 'https')
       fetch(httpsURL)
@@ -16,9 +15,9 @@ const useImage = (propImage) => {
         .then(images => {
           let outside = URL.createObjectURL(images)
           setImage(
-            <React.Fragment>
+            <div style={{paddingRight: "20px", paddingLeft: "20px"}}>
               <img src={outside} alt=""/>
-            </React.Fragment>
+            </div>
           )
           setIsLoading(false)
         })

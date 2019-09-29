@@ -1,14 +1,9 @@
 import React from 'react';
-//import Header from '../Layout/Header/Header';
 
-const layoutStyle = {
-  margin: 20,
-  padding: 20,
-  border: '1px solid #DDD'
-};
+import './Layout.css';
 
 const layout = (props) => (
-  <div style={layoutStyle}>
+  <div className="Layout">
     {props.children}
   </div>
 );

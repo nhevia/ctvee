@@ -5,8 +5,9 @@
 
 .LogoSmall {
     align-self: flex-start;
-    transform: translate(-50%, -50%) scale(0.33);
-    transform-origin: 80% 80%;
+    width: 132px;
+    height: 141px;
+    
 
 
     /* animation: animateLogoSmall 650ms forwards; */
@@ -37,6 +38,6 @@
 
 @media (max-width: 500px) {
     .LogoSmall{
-        opacity: 0;
+        /* opacity: 0; */
     }
 }

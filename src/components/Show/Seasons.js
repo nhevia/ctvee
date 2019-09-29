@@ -15,7 +15,7 @@ const Seasons = (props) => {
     axios.get(`https://api.tvmaze.com/shows/${id}/seasons`)
       .then(res => {
         const data = res.data
-
+        console.log(res.data)
         let seasons = []
         data.forEach(season => {
           seasons.push({
@@ -30,7 +30,7 @@ const Seasons = (props) => {
         setSeasons(seasons)
         setIsMounted(true) // now render Season
       })
-  }, [])
+  }, [id])
 
   useEffect(() => {
     let seasonsArr = []

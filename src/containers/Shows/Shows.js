@@ -36,7 +36,7 @@ const Shows = (props) => {
 
         setLoading(false)
       })
-  }, [props.id]) // changed from props to id, somehow props is changing. TODO: FIX
+  }, [props.id]) // FIXME: if "props" (no id) then it changes somehow
 
   return (
     <div id="shows">

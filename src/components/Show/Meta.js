@@ -14,9 +14,9 @@ const Meta = (props) => {
 
   return (
     <div id="meta" className="Show">
-      <p style={{textAlign: 'center', padding: '20px', fontWeight: 'bold'}}>{props.show.name}</p>
+      <h1 style={{textAlign: 'center'}}>{props.show.name}</h1>
 
-      <hr style={{width: "100%"}}/>
+      {/* <hr style={{width: "100%"}}/> */}
       
       <div className="Meta">
         {isLoading ? <Dots /> : image}
@@ -27,7 +27,7 @@ const Meta = (props) => {
         </section>
       </div>
       
-      <hr style={{width: "100%"}}/>
+      {/* <hr style={{width: "100%"}}/> */}
       
       <div className="Seasons">
         <Seasons showId={props.show.id}/>
