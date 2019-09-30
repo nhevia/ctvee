@@ -59,10 +59,9 @@ const Seasons = (props) => {
         </select>
       </div>
 
-     
-        {seasons && isMounted ? <Season seasonData={seasons[selectedSeason]}/> : null}
-      
-      </React.Fragment>
+      {seasons && isMounted ? <Season seasonData={seasons[selectedSeason]}/> : null}
+
+    </React.Fragment>
   )
 }
 

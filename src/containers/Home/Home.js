@@ -7,6 +7,7 @@ import Ellipsis from '../../components/UI/Loaders/Bars/LoaderBars'
 
 import './Home.css'
 import Logo from '../../components/Layout/Logo/Logo'
+import getCustomStyle from './reactSelectStyle'
 
 const Home = (props) => {
   const [selectedOption, setSelectedOption] = useState(null)  
@@ -62,24 +63,6 @@ const Home = (props) => {
     console.log(`Option selected:`, selectedOption);
   };
 
-  // custom styles for react-select components
-  const customStyles = {
-    container: (base) => ({
-      ...base,
-      
-      marginLeft: 'auto',
-      marginRight: 'auto'
-    }),
-    option: (base, state) => ({
-      ...base,
-      borderBottom: '1px dotted pink',
-      color: state.isSelected ? 'white' : 'black',
-    }),
-    dropdownIndicator: () => ({
-      visibility: 'hidden'
-    }),
-  };
-
   // override default behaviour to not show react-select menu when selected
   const handleInputChange = (query, { action }) => {
     i = 0 
@@ -102,7 +85,7 @@ const Home = (props) => {
       {isLoading ? <Ellipsis /> : 
       <Select 
         className={selectedOption ? "SelectedWithOption" : "SelectedWithoutOption"}
-        styles={customStyles}
+        styles={getCustomStyle()}
         value={selectedOption}
         onChange={handleChange}
         options={options}      
@@ -115,9 +98,7 @@ const Home = (props) => {
         filterOption={({value}, query) => value.indexOf(query.toLowerCase()) >= 0 && i++ < resultLimit}
       />
       }
-     
-      
-      
+
     </div>
     <div>
       {selectedOption && <Shows id={selectedOption.id}/>}

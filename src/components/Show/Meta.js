@@ -8,9 +8,7 @@ import './Meta.css'
 
 const Meta = (props) => {
   const summary = props.show.summary.replace(/<[/]?(p|b|i)>/g, '')
-  // TODO: check why this is not working
   const [image, isLoading] = useImage(props.show.image)
-  //const image = props.show.image;
 
   return (
     <div id="meta" className="Show">
@@ -18,7 +16,7 @@ const Meta = (props) => {
 
       {/* <hr style={{width: "100%"}}/> */}
       
-      <div className="Meta">
+      <div className="Meta ShowBox">
         {isLoading ? <Dots /> : image}
         <section>
         <p><b>Summary</b>: {summary}</p>
@@ -29,7 +27,7 @@ const Meta = (props) => {
       
       {/* <hr style={{width: "100%"}}/> */}
       
-      <div className="Seasons">
+      <div className="Seasons ShowBox">
         <Seasons showId={props.show.id}/>
       </div>
       

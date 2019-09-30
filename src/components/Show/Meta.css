@@ -3,10 +3,17 @@
     flex-direction: column;
 }
 
+.ShowBox {
+    padding: 20px 0px 20px 0px;
+    /* border-color: grey;
+    border-width: 1px;    
+    border-style: solid; */
+}
+
 .Meta {
     margin-top: 50px;
     margin-bottom: 50px;
-    display: flex;
+    display: inherit;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
