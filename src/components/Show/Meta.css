@@ -11,17 +11,26 @@
 }
 
 .Meta {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    display: inherit;
+    margin: 50px 50px 25px 50px;
+    flex-wrap: wrap;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
 }
 
 .Seasons {
+    flex-wrap: wrap;
     margin-top: 50px;
     margin-bottom: 50px;
-    display: inherit;
+    display: flex;
     flex-direction: column;
+}
+
+@media (max-width: 500px) {
+    .Meta{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
 }

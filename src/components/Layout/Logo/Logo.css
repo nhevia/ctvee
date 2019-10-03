@@ -39,5 +39,6 @@
 @media (max-width: 500px) {
     .LogoSmall{
         /* opacity: 0; */
+        align-self: inherit;
     }
 }
