@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment'
 import Select from 'react-select';
 import axios from 'axios';
 import Shows from '../Shows/Shows'
@@ -16,54 +17,58 @@ const Home = (props) => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Check if data is cached already in localStorage
-    // TODO: implement time-based cache limit
+    // Gets shows data stored in localStorage
     const showsStored = JSON.parse(localStorage.getItem("shows"))
-    // shows will have AT LEAST 10k entries
-    // TODO: think of another way, not convinced about the 10k check
-    if (showsStored && showsStored.length > 10000) {
-      let shows = []
-      showsStored.forEach(entry => {
-        shows.push({
-          id: entry.i,
-          label: entry.n,
-          value: entry.n.toLowerCase()
-        })
-        setOptions(shows)
-        setIsLoading(false)
-      })
+    // Gets last time shows were fetched from API
+    const lastUpdate = JSON.parse(localStorage.getItem("last_update"))
+    // Calculate if data is older than 7 days
+    const oneWeekAgo = moment().subtract(7, 'days')
+    const isDataOld = lastUpdate < oneWeekAgo.unix()
+
+    // Retrieve show data from localStorage and set the options
+    // TODO: not convinced about the 10k check, think an alternative
+    if (showsStored && !isDataOld && showsStored.length > 10000) {
+      fillOptions(showsStored)
       return
     }
     
-    // If this is the first time visiting the site    
-    // FIXME: fetches only 2287x items, out of 39k. Seems like a dynamo limitation
+    // First time visiting the site or something is wrong 
+    // FIXME: fetches only 22870 items, out of 39k. Seems like a dynamo limitation
     axios.get(`https://gbiq5irckk.execute-api.us-east-2.amazonaws.com/dev/getShowsName`)
       .then(res => {
-        let shows = []
-        res.data.forEach(entry => {
-          shows.push({
-            id: entry.i,
-            label: entry.n,
-            value: entry.n.toLowerCase()
-          })
-          setOptions(shows)
-          setIsLoading(false)
-        })
+        fillOptions(res.data)
         localStorage.setItem("shows", JSON.stringify(res.data));
+
+        const now = moment()
+        localStorage.setItem("last_update", JSON.stringify(now.unix()));
       })
       .catch(error => {
         console.log(error)
       })
   }, [])
 
-  // handle selector event
+  // Fill options from iterated object (could be localStorage or axios response)
+  const fillOptions = (obj) => {
+    let shows = []
+    obj.forEach(entry => {
+      shows.push({
+        id: entry.i,
+        label: entry.n,
+        value: entry.n.toLowerCase()
+      })
+      setOptions(shows)
+      setIsLoading(false)
+    })
+  }
+
+  // Handle selector event
   const handleChange = selectedOption => {
     hideMenu()
     setSelectedOption(selectedOption);
     console.log(`Option selected:`, selectedOption);
   };
 
-  // override default behaviour to not show react-select menu when selected
+  // Override default behaviour to not show react-select menu when selected
   const handleInputChange = (query, { action }) => {
     i = 0 
     if (action === "input-change") {
