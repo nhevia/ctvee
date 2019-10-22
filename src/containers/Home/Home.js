@@ -47,7 +47,7 @@ const Home = (props) => {
       })
   }, [])
 
-  // Fill options from iterated object (could be localStorage or axios response)
+  // Fill options with localStorage/axios
   const fillOptions = (obj) => {
     let shows = []
     obj.forEach(entry => {
@@ -65,7 +65,6 @@ const Home = (props) => {
   const handleChange = selectedOption => {
     hideMenu()
     setSelectedOption(selectedOption);
-    console.log(`Option selected:`, selectedOption);
   };
 
   // Override default behaviour to not show react-select menu when selected
@@ -80,7 +79,7 @@ const Home = (props) => {
   };
 
   // limit the items showings as options when searching
-  const resultLimit = 6
+  const resultLimit = 8
   let i = 0
 
   return(
