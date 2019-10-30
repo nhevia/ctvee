@@ -13,6 +13,7 @@ import getCustomStyle from './reactSelectStyle'
 const Home = (props) => {
   const [selectedOption, setSelectedOption] = useState(null)  
   const [options, setOptions] = useState([])
+  const [dynamicOptions, setDynamicOptions] = useState([])
   const [openMenu, setOpenMenu] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -33,10 +34,10 @@ const Home = (props) => {
     }
     
     // First time visiting the site or something is wrong 
-    // FIXME: fetches only 22870 items, out of 39k. Seems like a dynamo limitation
     axios.get(`https://gbiq5irckk.execute-api.us-east-2.amazonaws.com/dev/getShowsName`)
       .then(res => {
         fillOptions(res.data)
+        console.log(res.data)
         localStorage.setItem("shows", JSON.stringify(res.data));
 
         const now = moment()
@@ -56,26 +57,38 @@ const Home = (props) => {
         label: entry.n,
         value: entry.n.toLowerCase()
       })
-      setOptions(shows)
-      setIsLoading(false)
     })
+    setOptions(shows)
+    setDynamicOptions(shows)
+    setIsLoading(false)
   }
 
   // Handle selector event
   const handleChange = selectedOption => {
-    hideMenu()
+    setOpenMenu(false)
     setSelectedOption(selectedOption);
   };
 
   // Override default behaviour to not show react-select menu when selected
-  const handleInputChange = (query, { action }) => {
-    i = 0 
+  const handleInputChange = (value, { action }) => {
+    // first shows are ugly to show by default ("#1 single"? lol)
+    if (!value) {
+      return ''
+    }
+    
+    // tied with resultLimit, reset it
+    i = 0
+
     if (action === "input-change") {
+      // filter only shows similar to our query
+      let partialOptions = dynamicOptions.filter(item => item.value.toLowerCase() >= value.toLowerCase())
+      // order them alphabetically
+      partialOptions.sort((a,b) => (a.value > b.value) ? 1 : -1)
+      // update the option list with our subset
+      setOptions(partialOptions)
+      // manual
       setOpenMenu(true)
     }
-  };
-  const hideMenu = () => {
-    setOpenMenu(false)
   };
 
   // limit the items showings as options when searching
@@ -95,7 +108,7 @@ const Home = (props) => {
         options={options}      
         placeholder={"Search your favourite series"}
         // override default behaviours for hiding options  
-        onBlur={hideMenu}
+        onBlur={() => setOpenMenu(false)}
         menuIsOpen={openMenu}
         onInputChange={handleInputChange}
         // limit options showing
