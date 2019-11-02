@@ -1,19 +1,37 @@
 // React-Select custom styles
 const getCustomStyle = () => {
   return {
+    control: (base, state) => ({
+      ...base,
+      background: "black"
+    }),
     container: (base) => ({
       ...base,
       marginLeft: 'auto',
-      marginRight: 'auto'
+      marginRight: 'auto',
+      background: 'black'
+    }),
+    menu: (base) => ({
+      ...base,
+      background: 'black'
     }),
     option: (base, state) => ({
       ...base,
-      borderBottom: '1px dotted pink',
-      color: state.isSelected ? 'white' : 'black',
+      color: 'white',
+      '&:hover': {
+        background: 'grey'
+      }
+    }),
+    input: (base) => ({
+      ...base,
+      color: 'white'
     }),
     dropdownIndicator: () => ({
       visibility: 'hidden'
-    })
+    }),
+    indicatorSeparator: () => ({
+      visibility: 'hidden'
+    }),
   }
 }
 

@@ -13,7 +13,6 @@ function App() {
           <Route path="/shows/:id" component={Shows} />
           <Route path="/about" component={About} />
         </Switch> */}
-        {/* <Home /> */}
         <Home />
       </Layout>
     </React.Fragment>
