@@ -1,7 +1,7 @@
 // React-Select custom styles
 const getCustomStyle = () => {
   return {
-    control: (base, state) => ({
+    control: (base) => ({
       ...base,
       background: "black"
     }),
@@ -15,9 +15,10 @@ const getCustomStyle = () => {
       ...base,
       background: 'black'
     }),
-    option: (base, state) => ({
+    option: (base) => ({
       ...base,
       color: 'white',
+      background: 'black',
       '&:hover': {
         background: 'grey'
       }
@@ -32,6 +33,10 @@ const getCustomStyle = () => {
     indicatorSeparator: () => ({
       visibility: 'hidden'
     }),
+    placeholder: (base) => ({
+      ...base,
+      color: 'grey' 
+    })
   }
 }
 
