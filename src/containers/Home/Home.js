@@ -8,7 +8,7 @@ import Ellipsis from '../../components/UI/Loaders/Bars/LoaderBars'
 
 import './Home.css'
 import Logo from '../../components/Layout/Logo/Logo'
-import getCustomStyle from './reactSelectStyle'
+import { getCustomStyle } from './reactSelectStyle'
 
 const Home = (props) => {
   const [selectedOption, setSelectedOption] = useState(null)  
@@ -102,7 +102,7 @@ const Home = (props) => {
       {isLoading ? <Ellipsis /> : 
       <Select 
         className={selectedOption ? "SelectedWithOption" : "SelectedWithoutOption"}
-        styles={getCustomStyle()}
+        styles={getCustomStyle}
         value={selectedOption}
         onChange={handleChange}
         options={options}      
