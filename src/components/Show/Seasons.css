@@ -1,4 +1,4 @@
-.select {
+/* .select {
     margin-bottom: 15px;
     margin-left: auto;
     margin-right: auto;
@@ -31,7 +31,7 @@
         .select select:disabled {
             opacity: 0.1;
             pointer-events: none;
-        }
+        } */
 /* .select_arrow {
     position: absolute;
     top: 16px;
@@ -53,8 +53,8 @@
     border-top-color: #cccccc;
 } */
 
-@media (max-width: 800px) {
-    .select {
-        width: 80%;
-    }
+
+.select {
+    margin-left: auto;
+    margin-right: auto;
 }
