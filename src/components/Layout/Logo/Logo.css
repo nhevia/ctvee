@@ -29,7 +29,8 @@
 
     100% {
         opacity: 100;
-        transform: scale(0.5)
+        transform: scale(0.5);
+        margin: 0 0 -100px
     }
 }
 
@@ -42,5 +43,6 @@
     .LogoHome{
         /* transform: scale(0.2); */
         animation: logoHome500 1500ms forwards;
+        transform-origin: 50% 0%;
     }
 }
