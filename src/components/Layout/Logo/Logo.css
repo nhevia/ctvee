@@ -1,21 +1,15 @@
 .LogoHome {
     align-self: center;
-    animation: animateLogoHome 1500ms forwards;
+    animation: logoHome 1500ms forwards;
 }
 
 .LogoSmall {
     align-self: flex-start;
     width: 132px;
     height: 141px;
-    
-
-
-    /* animation: animateLogoSmall 650ms forwards; */
-    /* transform: translate(calc(-25vw - 15%), calc(-5vh - 40%)) scale(0.45); */
-    /* transition: transform 0.3s ease-out;    */
 }
 
-@keyframes animateLogoHome {
+@keyframes logoHome {
     0% {
         opacity: 0;
         transform: scale(1.1)
@@ -26,19 +20,27 @@
         transform: scale(1.0)
     }
 }
-/* 
-@keyframes animateLogoSmall {
+
+@keyframes logoHome500 {
     0% {
-       
+        opacity: 0;
+        transform: scale(0.7)
     }
+
     100% {
-        transform:  scale(0.5);
+        opacity: 100;
+        transform: scale(0.5)
     }
-} */
+}
+
 
 @media (max-width: 500px) {
     .LogoSmall{
         /* opacity: 0; */
         align-self: inherit;
+    }
+    .LogoHome{
+        /* transform: scale(0.2); */
+        animation: logoHome500 1500ms forwards;
     }
 }

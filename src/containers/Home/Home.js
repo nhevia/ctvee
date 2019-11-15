@@ -10,12 +10,16 @@ import './Home.css'
 import Logo from '../../components/Layout/Logo/Logo'
 import { getCustomStyle } from './reactSelectStyle'
 
+// move to state, listen to 'resize' event for changing state
+const isMobile = window.innerWidth <= 500;
+
 const Home = (props) => {
   const [selectedOption, setSelectedOption] = useState(null)  
   const [options, setOptions] = useState([])
   const [dynamicOptions, setDynamicOptions] = useState([])
   const [openMenu, setOpenMenu] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  // const [isMobile] = useState(window.innerWidth <= 500)
 
   useEffect(() => {
     // Gets shows data stored in localStorage
@@ -106,7 +110,7 @@ const Home = (props) => {
         value={selectedOption}
         onChange={handleChange}
         options={options}      
-        placeholder={"Search your favourite series"}
+        placeholder={isMobile ? 'Search series' : "Search your favourite series"}
         // override default behaviours for hiding options  
         onBlur={() => setOpenMenu(false)}
         menuIsOpen={openMenu}
