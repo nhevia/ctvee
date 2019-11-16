@@ -11,12 +11,12 @@
 }
 
 .Meta {
-    margin: 50px 50px 25px 50px;
+    margin: 25px 200px 0px 200px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    max-width: 80%;
+    
 }
 
 .MetaText {
@@ -35,5 +35,6 @@
     .Meta{
         flex-direction: column;
         text-align: center;
+        margin: 0px;
     }
 }
