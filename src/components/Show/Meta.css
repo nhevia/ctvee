@@ -5,9 +5,11 @@
 
 .ShowBox {
     padding: 20px 0px 20px 0px;
-    /* border-color: grey;
-    border-width: 1px;    
-    border-style: solid; */
+    background-color: #181818;
+    border-color: #282828;
+    border-width: 2px;    
+    border-style: solid;
+    border-radius: 10px;
 }
 
 .Meta {
@@ -24,6 +26,7 @@
 }
 
 .Seasons {
+    margin: 25px 200px 0px 200px;
     flex-wrap: wrap;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -36,5 +39,15 @@
         flex-direction: column;
         text-align: center;
         margin: 0px;
+        padding: 15px;
+    }
+
+    .Seasons {
+        margin: 0px;
+        flex-wrap: wrap;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
     }
 }
