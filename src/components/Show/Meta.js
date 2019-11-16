@@ -19,7 +19,7 @@ const Meta = (props) => {
       <div className="Meta ShowBox">
         {isLoading ? <Dots /> : image}
         <section>
-        <p><b>Summary</b>: {summary}</p>
+        <p>{summary}</p>
         <p><b>Rating</b>: {props.show.rating}</p>
         <p><b>Premiered</b>: {props.show.premiered}</p>
         </section>

@@ -7,3 +7,10 @@
     flex-wrap: wrap;
     align-items: center;
 }
+
+@media (max-width: 500px) {
+    .Season {
+        text-align: center;
+        flex-direction: column;
+    }
+}
