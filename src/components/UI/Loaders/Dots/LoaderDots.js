@@ -1,9 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 import './LoaderDots.css'
 
-const loaderDots = (props) => (
-  <div className="LoaderDots"></div>
-);
+const loaderDots = props => <div className="LoaderDots"></div>
 
-export default loaderDots;
+export default loaderDots

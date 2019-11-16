@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
 import './App.css'
-import Layout from './components/Layout/Layout';
-import Home from './containers/Home/Home';
+import Layout from './components/Layout/Layout'
+import Home from './containers/Home/Home'
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Home />
       </Layout>
     </React.Fragment>
-  );
+  )
 }
 
-export default App;
+export default App

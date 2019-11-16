@@ -1,38 +1,41 @@
-import React from 'react';
+import React from 'react'
 
-import Seasons from './Seasons';
+import Seasons from './Seasons'
 import useImage from '../../hooks/useImage'
 import Dots from '../UI/Loaders/Dots/LoaderDots'
 
 import './Meta.css'
 
-const Meta = (props) => {
+const Meta = props => {
   const summary = props.show.summary.replace(/<[/]?(p|b|i)>/g, '')
   const [image, isLoading] = useImage(props.show.image)
 
   return (
     <div id="meta" className="Show">
-      <h1 style={{textAlign: 'center'}}>{props.show.name}</h1>
+      <h1 style={{ textAlign: 'center' }}>{props.show.name}</h1>
 
       {/* <hr style={{width: "100%"}}/> */}
-      
+
       <div className="Meta ShowBox">
         {isLoading ? <Dots /> : image}
         <section>
-        <p>{summary}</p>
-        <p><b>Rating</b>: {props.show.rating}</p>
-        <p><b>Premiered</b>: {props.show.premiered}</p>
+          <p>{summary}</p>
+          <p>
+            <b>Rating</b>: {props.show.rating}
+          </p>
+          <p>
+            <b>Premiered</b>: {props.show.premiered}
+          </p>
         </section>
       </div>
-      
+
       {/* <hr style={{width: "100%"}}/> */}
-      
+
       <div className="Seasons ShowBox">
-        <Seasons showId={props.show.id}/>
+        <Seasons showId={props.show.id} />
       </div>
-      
     </div>
-  );
+  )
 }
 
-export default Meta;
+export default Meta

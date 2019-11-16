@@ -1,20 +1,20 @@
 // React-Select custom styles
 export const getCustomStyle = {
-  control: (base) => ({
+  control: base => ({
     ...base,
-    background: "black"
+    background: 'black'
   }),
-  container: (base) => ({
+  container: base => ({
     ...base,
     marginLeft: 'auto',
     marginRight: 'auto',
     background: 'black'
   }),
-  menu: (base) => ({
+  menu: base => ({
     ...base,
     background: 'black'
   }),
-  option: (base) => ({
+  option: base => ({
     ...base,
     color: 'white',
     background: 'black',
@@ -22,7 +22,7 @@ export const getCustomStyle = {
       background: 'grey'
     }
   }),
-  input: (base) => ({
+  input: base => ({
     ...base,
     color: 'white'
   }),
@@ -32,8 +32,8 @@ export const getCustomStyle = {
   indicatorSeparator: () => ({
     visibility: 'hidden'
   }),
-  placeholder: (base) => ({
+  placeholder: base => ({
     ...base,
-    color: 'grey' 
-  }) 
+    color: 'grey'
+  })
 }

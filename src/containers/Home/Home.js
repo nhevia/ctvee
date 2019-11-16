@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
-import Select from 'react-select';
-import axios from 'axios';
+import Select from 'react-select'
+import axios from 'axios'
 import Shows from '../Shows/Shows'
 
 import Ellipsis from '../../components/UI/Loaders/Bars/LoaderBars'
@@ -11,10 +11,10 @@ import Logo from '../../components/Layout/Logo/Logo'
 import { getCustomStyle } from './reactSelectStyle'
 
 // move to state, listen to 'resize' event for changing state
-const isMobile = window.innerWidth <= 500;
+const isMobile = window.innerWidth <= 500
 
-const Home = (props) => {
-  const [selectedOption, setSelectedOption] = useState(null)  
+const Home = props => {
+  const [selectedOption, setSelectedOption] = useState(null)
   const [options, setOptions] = useState([])
   const [dynamicOptions, setDynamicOptions] = useState([])
   const [openMenu, setOpenMenu] = useState(false)
@@ -23,9 +23,9 @@ const Home = (props) => {
 
   useEffect(() => {
     // Gets shows data stored in localStorage
-    const showsStored = JSON.parse(localStorage.getItem("shows"))
+    const showsStored = JSON.parse(localStorage.getItem('shows'))
     // Gets last time shows were fetched from API
-    const lastUpdate = JSON.parse(localStorage.getItem("last_update"))
+    const lastUpdate = JSON.parse(localStorage.getItem('last_update'))
     // Calculate if data is older than 7 days
     const oneWeekAgo = moment().subtract(7, 'days')
     const isDataOld = lastUpdate < oneWeekAgo.unix()
@@ -36,16 +36,19 @@ const Home = (props) => {
       fillOptions(showsStored)
       return
     }
-    
-    // First time visiting the site or something is wrong 
-    axios.get(`https://gbiq5irckk.execute-api.us-east-2.amazonaws.com/dev/getShowsName`)
+
+    // First time visiting the site or something is wrong
+    axios
+      .get(
+        `https://gbiq5irckk.execute-api.us-east-2.amazonaws.com/dev/getShowsName`
+      )
       .then(res => {
         fillOptions(res.data)
         console.log(res.data)
-        localStorage.setItem("shows", JSON.stringify(res.data));
+        localStorage.setItem('shows', JSON.stringify(res.data))
 
         const now = moment()
-        localStorage.setItem("last_update", JSON.stringify(now.unix()));
+        localStorage.setItem('last_update', JSON.stringify(now.unix()))
       })
       .catch(error => {
         console.log(error)
@@ -53,7 +56,7 @@ const Home = (props) => {
   }, [])
 
   // Fill options with localStorage/axios
-  const fillOptions = (obj) => {
+  const fillOptions = obj => {
     let shows = []
     obj.forEach(entry => {
       shows.push({
@@ -70,8 +73,8 @@ const Home = (props) => {
   // Handle selector event
   const handleChange = selectedOption => {
     setOpenMenu(false)
-    setSelectedOption(selectedOption);
-  };
+    setSelectedOption(selectedOption)
+  }
 
   // Override default behaviour to not show react-select menu when selected
   const handleInputChange = (value, { action }) => {
@@ -79,54 +82,60 @@ const Home = (props) => {
     if (!value) {
       return ''
     }
-    
+
     // tied with resultLimit, reset it
     i = 0
 
-    if (action === "input-change") {
+    if (action === 'input-change') {
       // filter only shows similar to our query
-      let partialOptions = dynamicOptions.filter(item => item.value.toLowerCase() >= value.toLowerCase())
+      let partialOptions = dynamicOptions.filter(
+        item => item.value.toLowerCase() >= value.toLowerCase()
+      )
       // order them alphabetically
-      partialOptions.sort((a,b) => (a.value > b.value) ? 1 : -1)
+      partialOptions.sort((a, b) => (a.value > b.value ? 1 : -1))
       // update the option list with our subset
       setOptions(partialOptions)
       // manual
       setOpenMenu(true)
     }
-  };
+  }
 
   // limit the items showings as options when searching
   const resultLimit = 8
   let i = 0
 
-  return(
+  return (
     <React.Fragment>
-    <div  className={selectedOption ? "HomeWithOption" : "Home"}>
-      {selectedOption ? <Logo isHome={false}/> : <Logo isHome/>}
-      {isLoading ? <Ellipsis /> : 
-      <Select 
-        className={selectedOption ? "SelectedWithOption" : "SelectedWithoutOption"}
-        styles={getCustomStyle}
-        value={selectedOption}
-        onChange={handleChange}
-        options={options}      
-        placeholder={isMobile ? 'Search series' : "Search your favourite series"}
-        // override default behaviours for hiding options  
-        onBlur={() => setOpenMenu(false)}
-        menuIsOpen={openMenu}
-        onInputChange={handleInputChange}
-        // limit options showing
-        filterOption={({value}, query) => value.indexOf(query.toLowerCase()) >= 0 && i++ < resultLimit}
-      />
-      }
-
-    </div>
-    <div>
-      {selectedOption && <Shows id={selectedOption.id}/>}
-    </div>
+      <div className={selectedOption ? 'HomeWithOption' : 'Home'}>
+        {selectedOption ? <Logo isHome={false} /> : <Logo isHome />}
+        {isLoading ? (
+          <Ellipsis />
+        ) : (
+          <Select
+            className={
+              selectedOption ? 'SelectedWithOption' : 'SelectedWithoutOption'
+            }
+            styles={getCustomStyle}
+            value={selectedOption}
+            onChange={handleChange}
+            options={options}
+            placeholder={
+              isMobile ? 'Search series' : 'Search your favourite series'
+            }
+            // override default behaviours for hiding options
+            onBlur={() => setOpenMenu(false)}
+            menuIsOpen={openMenu}
+            onInputChange={handleInputChange}
+            // limit options showing
+            filterOption={({ value }, query) =>
+              value.indexOf(query.toLowerCase()) >= 0 && i++ < resultLimit
+            }
+          />
+        )}
+      </div>
+      <div>{selectedOption && <Shows id={selectedOption.id} />}</div>
     </React.Fragment>
   )
-};
+}
 
-export default Home;
-
+export default Home
