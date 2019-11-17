@@ -19,7 +19,6 @@ const Home = props => {
   const [dynamicOptions, setDynamicOptions] = useState([])
   const [openMenu, setOpenMenu] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  // const [isMobile] = useState(window.innerWidth <= 500)
 
   useEffect(() => {
     // Gets shows data stored in localStorage
@@ -83,17 +82,18 @@ const Home = props => {
       return ''
     }
 
-    // tied with resultLimit, reset it
+    // reset resultLimit
     i = 0
 
+    // typing in the Select component
     if (action === 'input-change') {
       // filter only shows similar to our query
       let partialOptions = dynamicOptions.filter(
         item => item.value.toLowerCase() >= value.toLowerCase()
       )
-      // order them alphabetically
+      // order them a-z
       partialOptions.sort((a, b) => (a.value > b.value ? 1 : -1))
-      // update the option list with our subset
+      // update the option list with our sorted array
       setOptions(partialOptions)
       // manual
       setOpenMenu(true)
