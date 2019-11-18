@@ -29,7 +29,9 @@ const Shows = props => {
         summary: show.summary,
         image: show.image,
         rating: show.rating.average,
-        premiered: show.premiered
+        premiered: show.premiered,
+        genres: show.genres,
+        status: show.status
       })
 
       setLoading(false)

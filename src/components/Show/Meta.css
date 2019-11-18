@@ -34,6 +34,11 @@
     flex-direction: column;
 }
 
+.ShowStatus {
+    display: flex;
+    align-items: center;
+}
+
 @media (max-width: 500px) {
     .Meta{
         flex-direction: column;
