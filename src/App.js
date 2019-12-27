@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import './App.css'
-import Layout from './components/Layout/Layout'
-import Home from './containers/Home/Home'
+import './App.css';
+import Layout from './components/Layout/Layout';
+import Home from './containers/Home/Home';
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <Layout>
         {/* <Switch>
           <Route path="/" exact component={Home} />
@@ -15,8 +15,8 @@ function App() {
         </Switch> */}
         <Home />
       </Layout>
-    </React.Fragment>
-  )
+    </>
+  );
 }
 
-export default App
+export default App;
