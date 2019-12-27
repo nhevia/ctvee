@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import './Layout.css'
+import './Layout.css';
 
-const layout = props => <div className="Layout">{props.children}</div>
+const layout = ({children}) => <div className="Layout">{children}</div>;
 
-export default layout
+export default layout;

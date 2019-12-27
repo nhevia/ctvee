@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import Seasons from './Seasons'
-import useImage from '../../hooks/useImage'
-import Dots from '../UI/Loaders/Dots/LoaderDots'
-import IconStatus from './Status/IconStatus'
+import Seasons from './Seasons';
+import useImage from '../../hooks/useImage';
+import Dots from '../UI/Loaders/Dots/LoaderDots';
+import IconStatus from './Status/IconStatus';
 
-import './Meta.css'
+import './Meta.css';
 
 const Meta = ({ show }) => {
-  const summary = show.summary.replace(/<[/]?(p|b|i)>/g, '')
-  const [image, isLoading] = useImage(show.image)
+  const summary = show.summary.replace(/<[/]?(p|b|i)>/g, '');
+  const [image, isLoading] = useImage(show.image);
 
   return (
     <div id="meta" className="Show">
@@ -46,7 +46,7 @@ const Meta = ({ show }) => {
         <Seasons showId={show.id} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Meta
+export default Meta;
