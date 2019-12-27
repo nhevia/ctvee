@@ -1,44 +1,44 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import Meta from '../../components/Show/Meta'
-import Dots from '../../components/UI/Loaders/Dots/LoaderDots'
-import imagePlaceholder from '../../images/no_image.png'
+import Meta from '../../components/Show/Meta';
+import Dots from '../../components/UI/Loaders/Dots/LoaderDots';
+import imagePlaceholder from '../../images/no_image.png';
 
-const Shows = props => {
-  const [show, setShow] = useState({})
-  const [loading, setLoading] = useState(true)
+const Shows = ({id}) => {
+  const [show, setShow] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true) // when rendering a show from another one, we want to reset loading
-    const id = props.id
+    setLoading(true); // when rendering a show from another one, we want to reset loading
+    // const {id} = props;
     axios.get(`https://api.tvmaze.com/shows/${id}`).then(res => {
-      const show = res.data
+      const localShow = res.data;
 
-      if (!show.summary) {
-        show.summary = 'No summary found'
+      if (!localShow.summary) {
+        localShow.summary = 'No summary found';
       }
-      if (!show.image) {
-        show.image = {}
-        show.image.medium = imagePlaceholder
+      if (!localShow.image) {
+        localShow.image = {};
+        localShow.image.medium = imagePlaceholder;
       }
 
       setShow({
-        id: show.id,
-        name: show.name,
-        summary: show.summary,
-        image: show.image,
-        rating: show.rating.average,
-        premiered: show.premiered,
-        genres: show.genres,
-        status: show.status
-      })
+        id: localShow.id,
+        name: localShow.name,
+        summary: localShow.summary,
+        image: localShow.image,
+        rating: localShow.rating.average,
+        premiered: localShow.premiered,
+        genres: localShow.genres,
+        status: localShow.status
+      });
 
-      setLoading(false)
-    })
-  }, [props.id]) // FIXME: if "props" (no id) then it changes somehow
+      setLoading(false);
+    });
+  }, [id]); // FIXME: if "props" (no id) then it changes somehow
 
-  return <div id="shows">{loading ? <Dots /> : <Meta show={show} />}</div>
-}
+  return <div id="shows">{loading ? <Dots /> : <Meta show={show} />}</div>;
+};
 
-export default Shows
+export default Shows;

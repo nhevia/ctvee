@@ -36,4 +36,4 @@ export const getCustomStyle = {
     ...base,
     color: 'grey'
   })
-}
+};
