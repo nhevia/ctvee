@@ -39,5 +39,8 @@
     "Request": true,
     "fetch": true
   },
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "env": {
+    "jest": true
+  }
 }
