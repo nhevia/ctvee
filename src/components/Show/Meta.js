@@ -20,6 +20,7 @@ const Meta = ({ show }) => {
       <div className="Meta ShowBox">
         {isLoading ? <Dots /> : image}
         <section>
+          {/* <p dangerouslySetInnerHTML={{__html: summary}} ></p> */}
           <p>{summary}</p>
           <p>
             <b>Rating</b>: {show.rating}
