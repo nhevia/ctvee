@@ -1,38 +1,38 @@
-import React from 'react'
+import React from 'react';
 
-//import Spinner from '../UI/Loaders/Spinner/Spinner'
-import Dots from '../../components/UI/Loaders/Dots/LoaderDots'
-import useImage from '../../hooks/useImage'
+// import Spinner from '../UI/Loaders/Spinner/Spinner'
+import Dots from "../UI/Loaders/Dots/LoaderDots";
+import useImage from '../../hooks/useImage';
 
-import './Season.css'
+import './Season.css';
 
-const Season = props => {
-  const [image, isLoading] = useImage(props.seasonData.image)
+const Season = ({seasonData}) => {
+  const [image, isLoading] = useImage(seasonData.image);
 
-  let content = null
-  if (props.seasonData) {
+  let content = null;
+  if (seasonData) {
     content = (
       <div className="Season">
         <section>
           <p>
-            <b>Premiered</b>: {props.seasonData.premiereDate}
+            <b>Premiered</b>: {seasonData.premiereDate}
           </p>
           <p>
-            <b>End</b>: {props.seasonData.endDate}
+            <b>End</b>: {seasonData.endDate}
           </p>
           <p>
-            <b>Episodes</b>: {props.seasonData.episodeOrder}
+            <b>Episodes</b>: {seasonData.episodeOrder}
           </p>
         </section>
 
         {isLoading ? <Dots /> : image}
       </div>
-    )
+    );
   } else {
-    content = null
+    content = null;
   }
 
-  return <React.Fragment>{content}</React.Fragment>
-}
+  return <>{content}</>;
+};
 
-export default Season
+export default Season;

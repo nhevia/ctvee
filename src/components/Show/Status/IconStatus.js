@@ -4,10 +4,10 @@ import { ReactComponent as Minus } from '../../../images/play_minus.svg';
 
 import './IconStatus.css';
 
-const IconStatus = props => {
+const IconStatus = ({status}) => {
   return (
     <>
-      {props.status === 'Running' ? (
+      {status === 'Running' ? (
         <Plus className="Icon" />
       ) : (
         <Minus className="Icon" />
