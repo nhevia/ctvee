@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import './Spinner.css'
+import './Spinner.css';
 
-const spinner = props => <div className="Loader"></div>
+const spinner = () => <div className="Loader" />;
 
-export default spinner
+export default spinner;

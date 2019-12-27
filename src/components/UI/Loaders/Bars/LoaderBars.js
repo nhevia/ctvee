@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import './LoaderBars.css'
+import './LoaderBars.css';
 
-const loaderBars = props => <div className="LoaderBars"></div>
+const loaderBars = () => <div className="LoaderBars" />;
 
-export default loaderBars
+export default loaderBars;
