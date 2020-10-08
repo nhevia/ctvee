@@ -2,16 +2,9 @@
 
 ## Summary
 
-Site to get TV Series info.
+This is a personal project. A site where you can search TV series and all relevant information about them.  
+Series list is refreshed weekly from TVMaze public API into AWS (to reduce API requests on their side). Runtime queries (series details) are still being requested from TVMaze API.
+
 [Demo site](https://ctvee.netlify.com)
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
+> Note: old project, not being mantained. *Maybe* in the future...
