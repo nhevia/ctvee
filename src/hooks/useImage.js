@@ -9,7 +9,7 @@ const useImage = propImage => {
   useEffect(() => {
     if (propImage) {
       setIsLoading(true);
-      const httpsURL = propImage.medium.replace('http', 'https');
+      const httpsURL = propImage.medium.replace('http://', 'https://');
       fetch(httpsURL)
         .then(response => response.blob())
         .then(images => {

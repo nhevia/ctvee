@@ -44,8 +44,6 @@ const Home = () => {
       )
       .then(res => {
         fillOptions(res.data);
-        // eslint-disable-next-line no-console
-        console.log(res.data);
         localStorage.setItem('shows', JSON.stringify(res.data));
 
         const now = moment();
@@ -133,7 +131,6 @@ const Home = () => {
             onInputChange={handleInputChange}
             // limit options showing
             filterOption={({ value }, query) => {
-              // console.log(limitIndex);
               limitIndex += 1;
               return value.indexOf(query.toLowerCase()) >= 0 && (resultLimit > limitIndex);
             }
